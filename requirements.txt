@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+sqlalchemy
+psycopg2-binary  # PostgreSQL driver
+passlib[bcrypt]  # Password hashing
+python-jose[cryptography]  # JWT handling
+alembic  # For database migrations
+pydantic  # For environment config
