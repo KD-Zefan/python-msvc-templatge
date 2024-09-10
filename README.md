@@ -1,27 +1,30 @@
-# User Management Service
+# FastAPI Microservice Template
 
-This is a microservice for user management, including user registration, authentication (using JWT), and profile management. It is built using FastAPI, PostgreSQL, Docker, and Docker Compose.
+This repository provides a template for building microservices using FastAPI, PostgreSQL, Docker, and Docker Compose. It is designed as a starting point for new microservices, providing a structured framework that can be easily extended with your own APIs and business logic.
 
 ## Features
 
-- **User Registration**: Create new users with hashed passwords.
-- **User Authentication**: Secure login using JWT tokens.
-- **Profile Management**: Fetch and update user profile information.
+- **FastAPI**: A modern, fast (high-performance) web framework for building APIs with Python.
+- **PostgreSQL**: A powerful, open-source relational database.
+- **Docker & Docker Compose**: Simplifies containerized development and deployment.
+- **Continuous Integration**: Supports static code analysis with Pylint via GitHub Actions.
 
 ## Tech Stack
 
-- **FastAPI**: A modern, fast (high-performance) web framework for building APIs with Python.
-- **PostgreSQL**: The relational database used to store user information.
-- **Docker**: Used to containerize the application and database.
-- **Docker Compose**: Orchestrates the containers for local development.
+- **FastAPI**: For building asynchronous web applications and APIs.
+- **PostgreSQL**: For relational database management.
+- **Docker**: Containerizes the application for local development and production environments.
+- **Docker Compose**: Orchestrates multi-container setups, making it easy to run PostgreSQL and FastAPI together.
+- **Pylint**: For ensuring code quality with static analysis.
 
 ## Prerequisites
 
-To set up this project locally, make sure you have the following installed:
+Before setting up the project, ensure you have the following installed:
 
 - [Docker](https://docs.docker.com/get-docker/)
 - [Docker Compose](https://docs.docker.com/compose/install/)
 - [Git](https://git-scm.com/)
+- Python (if you want to develop and test outside Docker)
 
 ## Setup Instructions
 
@@ -31,13 +34,13 @@ Follow the steps below to set up and run the project on your local machine.
 
 ### 2. Create a .env File
 
-You will need to create a .env file to configure environment variables for local development. A sample .env.example file is provided in the repository.
+A sample .env.example file is provided. Copy this to .env and adjust the values for local development.
 
 ```
 cp .env.example .env
 ```
 
-Edit the .env file to update the values as needed:
+Update the .env file with appropriate values:
 
 ```
 DATABASE_URL=postgresql://myuser:mypassword@localhost:5432/mydatabase
@@ -55,16 +58,17 @@ docker-compose up --build
 
 This will:
 
-Pull the necessary Docker images for FastAPI and PostgreSQL.
-Build the FastAPI application image.
-Run the application on http://localhost:8000.
-Expose PostgreSQL on port 5432 for database interactions.
+- Pull the necessary Docker images.
+- Build the FastAPI service.
+- Start both the FastAPI app and PostgreSQL database.
 
 ### 4. Running the Service
 
 Once the services are running, you can access the FastAPI application via:
 
+```
 http://localhost:8000
+```
 
 You can also access the automatically generated API documentation:
 
@@ -114,4 +118,20 @@ Check running containers:
 
 ```
 docker ps
+```
+
+### 8. Running Pylint Code Analysis
+
+Pylint is set up to run automatically on each push via GitHub Actions. You can also run Pylint locally:
+
+Install Pylint if it's not already installed:
+
+```
+pip install pylint
+```
+
+Run Pylint:
+
+```
+pylint $(git ls-files '*.py')
 ```
